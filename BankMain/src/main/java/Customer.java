@@ -92,7 +92,7 @@ public class Customer implements Serializable{
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "Customer [name=" + name + ", password=" +password + ", email=" + email+ ", address=" + address + 
-				"phone number=" + phoneNumber + "Enabled: " + accountEnabled +"]";
+				"phone number=" + phoneNumber + "Enabled: " +"]";
 	}
 	
 	

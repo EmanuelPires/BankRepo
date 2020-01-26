@@ -75,7 +75,7 @@ public class IOMethods {
 	
 	public static void writePendinFile() {
 		//System.out.println("Hello from write pending file");
-		System.out.println(Driver.curCustomer);
+		
 		ObjectOutputStream obj;
 		try {
 			Customer.pendingList.add(Driver.curCustomer);
@@ -102,7 +102,7 @@ public class IOMethods {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Customer Approved");
+		System.out.println("Customer Processed");
 			
 		}
 	
