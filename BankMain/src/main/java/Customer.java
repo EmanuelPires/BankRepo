@@ -28,6 +28,10 @@ public class Customer implements Serializable{
 		this.phoneNumber = phoneNumber;
 		this.balance = balance;
 	}
+	
+	public void setEnabledTrue() {
+		this.accountEnabled = true;
+	}
 	public boolean getAccountEnabled() {
 		return accountEnabled;
 	}
@@ -88,7 +92,7 @@ public class Customer implements Serializable{
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "Customer [name=" + name + ", password=" +password + ", email=" + email+ ", address=" + address + 
-				"phone number=" + phoneNumber +"]";
+				"phone number=" + phoneNumber + "Enabled: " + accountEnabled +"]";
 	}
 	
 	

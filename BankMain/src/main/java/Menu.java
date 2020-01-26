@@ -23,7 +23,7 @@ public class Menu {
 			System.out.println("Enter your password");
 			String password = scan.nextLine();
 			AccountManagment.login(name, password);
-			
+			menu2();
 			break;
 		case "register":
 			System.out.println("Enter your name");
@@ -31,10 +31,30 @@ public class Menu {
 			System.out.println("Enter your password");
 			password = scan.nextLine();
 			AccountManagment.register(name, password);
+			break;
+		case "employee":
+			System.out.println("Enter your name");
+			String empName = scan.nextLine();
+			System.out.println("Enter your password");
 			
-		
+			String empPassword = scan.nextLine();
+			AccountManagment.empLogin(empName, empPassword);
+			menu3();
+		break;
 		}
 
+	}
+	
+	public static void menu3() {
+		System.out.println("What would you like to do?");
+		System.out.println("view customers or approve pending enter view or approve");
+		Scanner scan = new Scanner(System.in);
+		String choice = scan.nextLine();
+		switch(choice) {
+		case "approve":AccountManagment.appoveAccounts();
+			break;
+			default: System.out.println("Whatup!");
+		}
 	}
 
 	public static void menu2() {
@@ -45,6 +65,7 @@ public class Menu {
 		//System.out.println("Address: " + Driver.curCustomer.getAddress());
 		//System.out.println("Phone Number: " + Driver.curCustomer.getPhoneNumber());
 		
+		System.out.println(Driver.curCustomer.getAccountEnabled());
 		if(!Driver.curCustomer.getAccountEnabled()) {
 			System.out.println("You want to apply for a account or quit");
 			
@@ -55,24 +76,35 @@ public class Menu {
 				IOMethods.writePendinFile();
 				
 				break;
-
+			case "quit":
+				System.out.println("Goodbye");
 			default:
 				break;
 			}
 			
-		}
-//		System.out.println("What would you like to do? deposit or withdrawel");
-//		Scanner scan = new Scanner(System.in);
-//		String choice = scan.nextLine();
-//		switch(choice) {
-//		case "deposit":
-//			break;
-//		case "withdrawel":
-//			break;
-//		default: System.out.println("Hey type correctly");
-//		break;
-//		}
+		}else {
 		
+		
+		System.out.println("What would you like to do? deposit or withdraw");
+		Scanner scan = new Scanner(System.in);
+		String choice = scan.nextLine();
+		switch(choice) {
+		case "deposit":
+			System.out.println("Enter the amount ");
+			Double amount=scan.nextDouble();
+			AccountManagment.deposit(amount);
+			
+			break;
+		case "withdraw":
+			System.out.println("Enter the amount ");
+			Double amount1=scan.nextDouble();
+			AccountManagment.withdraw(amount1);
+			
+			break;
+		default: System.out.println("Hey type correctly");
+		break;
+		}
+	}
 	}
 
 

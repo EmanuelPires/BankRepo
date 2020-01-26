@@ -12,7 +12,9 @@ public class IOMethods {
 	
 	private static final File CUSTFILE = new File("customerList.txt");
 	
-	private static final File PendingFile=new File("pendingReguest.txt");		
+	private static final File PendingFile=new File("pendingReguest.txt");
+	
+	private static final File EMPLOYEEFILE = new File("employeeList.txt");
 
 	public static void writeCustomerFile() {
 		ObjectOutputStream objectOut;
@@ -51,10 +53,48 @@ public class IOMethods {
 		
 	}
 	
+	public static void readEmployeefile() {
+		ObjectInputStream objectIn;
+		try {
+			objectIn = new ObjectInputStream(new FileInputStream(EMPLOYEEFILE));
+			Employee.empList = (ArrayList<Employee>)objectIn.readObject();
+			
+			//System.out.println(objectIn.readObject());
+			objectIn.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void writePendinFile() {
+		//System.out.println("Hello from write pending file");
+		System.out.println(Driver.curCustomer);
 		ObjectOutputStream obj;
 		try {
 			Customer.pendingList.add(Driver.curCustomer);
+			obj = new ObjectOutputStream(new FileOutputStream(PendingFile));
+			obj.writeObject(Customer.pendingList);
+			//System.out.println(Customer.pendingList.get(Customer.pendingList.size()-1));
+			obj.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println("Your application has been received");
+			
+		}
+	
+	public static void removePendingCustomer() {
+		ObjectOutputStream obj;
+		try {
+			
 			obj = new ObjectOutputStream(new FileOutputStream(PendingFile));
 			obj.writeObject(Customer.pendingList);
 			obj.close();
@@ -62,9 +102,47 @@ public class IOMethods {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println("Customer Approved");
 			
 		}
+	
+	public static void readPending() {
+		ObjectInputStream objectIn;
+		try {
+			objectIn = new ObjectInputStream(new FileInputStream(PendingFile));
+			Customer.pendingList = (ArrayList<Customer>)objectIn.readObject();
+			
+			
+			//System.out.println(Customer.pendingList.get(0).toString());
+			objectIn.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeEmployeeList() {
+		ObjectOutputStream obj;
+		
+			try {
+				obj = new ObjectOutputStream(new FileOutputStream(EMPLOYEEFILE));
+				obj.writeObject(Employee.empList);
+				obj.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		
+	}
 		
 		
 	}
