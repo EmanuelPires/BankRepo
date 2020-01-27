@@ -20,9 +20,9 @@ public static Admin curAdmin;
 //	Employee.empList.add(firstEmployee);
 //	IOMethods.writeEmployeeList();
 //	
-	//Admin firstAdmin = new Admin("Jack", "password");
-	//Admin.adList.add(firstAdmin);
-	//IOMethods.writeAdminList();
+//	Admin firstAdmin = new Admin("Jack", "password");
+//	Admin.adList.add(firstAdmin);
+//	IOMethods.writeAdminList();
 		 
 		IOMethods.readEmployeefile();
 		IOMethods.readAdminfile();

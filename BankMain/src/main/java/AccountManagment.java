@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class AccountManagment {
-	public static Customer curCustomer = null;
+	//public static Customer curCustomer = null;
 	public static int custIndex = 0;
 	public static int empIndex = 0;
+	public static int adIndex = 0;
 
 	public static void register(String name, String password) {
 		Customer newCustomer = new Customer(name, password);
@@ -60,11 +61,10 @@ public class AccountManagment {
 
 		
 		
-			 System.out.println(cont);
-			custIndex = cont;
+			 
+			
 			Driver.curCustomer = Customer.custList.get(cont);
-			 System.out.println("From AcctMgmt curCustomer = " +
-			 Driver.curCustomer.toString());
+			 
 		
 
 	}
@@ -72,30 +72,22 @@ public class AccountManagment {
 	public static void empLogin(String name, String password) {
 
 		int cont = 0;
-		System.out.println(Employee.empList.get(cont).toString());
-		
-		
-		while (Employee.empList.size() >=cont && (Employee.empList.get(cont).getName().equals(name) != true
+		while (Employee.empList.size() >= cont && (Employee.empList.get(cont).getName().equals(name) != true
 				|| Employee.empList.get(cont).getPassword().equals(password) != true)) {
-
+			
 			cont++;
-			if(cont>= Employee.empList.size()) {
-				//System.out.println("Is it getting here?");
-				employeeNotFound();
+			if(cont==Employee.empList.size()) {
+				System.out.println("You're username or password was not found");
+				Menu.startMenu();
 			}
-
 		}
 
-		if (cont == Employee.empList.size() && Employee.empList.get(cont).getName() != name
-				|| Employee.empList.get(cont).getPassword() != password) {
-			System.out.println("Your username or password are incorrect");
-		} else {
-			// System.out.println(cont);
-			empIndex = cont;
-			Driver.curEmployee = Employee.empList.get(cont);
-			// System.out.println("From AcctMgmt curCustomer = " +
-			// Driver.curCustomer.toString());
-		}
+		
+		
+			 
+		
+			Driver.curAdmin = Admin.adList.get(cont);
+			 
 
 	}
 
@@ -232,18 +224,21 @@ public class AccountManagment {
 	
 	public static void adlogin(String name,String pass) {
 		int cont = 0;
-		while (Admin.adList.size() < cont && (Admin.adList.get(cont).getName().equals(name) != true
-				&& Admin.adList.get(cont).getPassword().equals(pass) != true)) {
+		while (Admin.adList.size() >= cont && (Admin.adList.get(cont).getName().equals(name) != true
+				|| Admin.adList.get(cont).getPassword().equals(pass) != true)) {
+			
 			cont++;
+			if(cont==Admin.adList.size()) {
+				System.out.println("You're username or password was not found");
+				Menu.startMenu();
+			}
 		}
-		if (cont == Admin.adList.size() && Admin.adList.get(cont).getName() != name
-				&& Admin.adList.get(cont).getPassword() != pass) {
-			System.out.println("Your username or password are incorrect");
-		} else {
-			Driver.curAdmin =Admin.adList.get(cont);
-		}
-		System.out.println("You're logged in!");
-		System.out.println(Driver.curAdmin.toString());
+
+		
+		
+			 
+			
+			Driver.curCustomer = Customer.custList.get(cont);
 	}
 	
 	public static void viewCustAccAd(String name) {
@@ -267,6 +262,76 @@ public class AccountManagment {
 		}
 		System.out.println("This is Customer " + name + " Informations");
 		System.out.println(Driver.curCustomer.toString());
+		Menu.menu4();
+	}
+	
+	public static void editCustAcc(String name) {
+		int cont = 0;
+		while (Customer.custList.size() >cont && (Customer.custList.get(cont).getName().equals(name) != true)) {
+
+			cont++;
+			if(Customer.custList.size()>=cont) {
+				custAdNotFound();
+			}
+
+		}
+		if (cont == Customer.custList.size() && Customer.custList.get(cont).getName() != name) {
+			System.out.println("User doesn't exist");
+		} else {
+			// System.out.println(cont);
+			custIndex = cont;
+			Driver.curCustomer = Customer.custList.get(cont);
+			// System.out.println("From AcctMgmt curCustomer = " +
+			// Driver.curCustomer.toString());
+		}
+		System.out.println("What would you like to edit?");
+		System.out.println("name, address, email, phone number or exit?");
+		Scanner scan = new Scanner(System.in);
+		String choice = scan.nextLine();
+			switch(choice) {
+			case "name": System.out.println("Enter new name");
+				String newName = scan.nextLine();
+						Driver.curCustomer.setName(newName);
+						Customer.custList.set(cont, Driver.curCustomer);
+						IOMethods.writeCustomerFile();
+						
+						System.out.println("Customer updated!");
+						System.out.println(Driver.curCustomer.toString());
+						editCustAcc(Driver.curCustomer.getName());
+						break;
+			case"email":System.out.println("Enter new email");
+				String newEmail = scan.nextLine();
+			Driver.curCustomer.setEmail(newEmail);
+			Customer.custList.set(cont, Driver.curCustomer);
+			IOMethods.writeCustomerFile();
+			
+			System.out.println("Customer updated!");
+			System.out.println(Driver.curCustomer.toString());
+			editCustAcc(Driver.curCustomer.getEmail());
+			break;
+			case"address":System.out.println("Enter new Address");
+				String newAddress = scan.nextLine();
+			Driver.curCustomer.setAddress(newAddress);
+			Customer.custList.set(cont, Driver.curCustomer);
+			IOMethods.writeCustomerFile();
+			
+			System.out.println("Customer updated!");
+			System.out.println(Driver.curCustomer.toString());
+			editCustAcc(Driver.curCustomer.getAddress());
+			break;
+			case"phone":System.out.println("Enter new phone");
+				String newphone = scan.nextLine();
+			Driver.curCustomer.setPhoneNumber(newphone);
+			Customer.custList.set(cont, Driver.curCustomer);
+			IOMethods.writeCustomerFile();
+			
+			System.out.println("Customer updated!");
+			System.out.println(Driver.curCustomer.toString());
+			editCustAcc(Driver.curCustomer.getPhoneNumber());
+			break;
+			case "quit":
+				Menu.startMenu();
+			}
 		Menu.menu4();
 	}
 }

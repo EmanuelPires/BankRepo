@@ -100,7 +100,7 @@ public class Menu {
 
 		} else {
 
-			System.out.println("What would you like to do?  view balance, deposit or withdraw");
+			System.out.println("What would you like to do?  view balance, deposit, withdraw or quit");
 			Scanner scan = new Scanner(System.in);
 			String choice = scan.nextLine();
 			switch (choice) {
@@ -108,18 +108,20 @@ public class Menu {
 				System.out.println("Enter the amount ");
 				Double amount = scan.nextDouble();
 				AccountManagment.deposit(amount);
-
+				Menu.menu2();
 				break;
 			case "withdraw":
 				System.out.println("Enter the amount ");
 				Double amount1 = scan.nextDouble();
 				AccountManagment.withdraw(amount1);
-
+				Menu.menu2();
 				break;
 			case "view balance":
 				AccountManagment.viewCustBalance();
-
+				Menu.menu2();
 				break;
+			case "quit":
+				Menu.startMenu();
 			default:
 				System.out.println("Hey type correctly");
 				break;
@@ -152,16 +154,19 @@ public class Menu {
 	
 	public static void menu4() {
 		System.out.println("What would you like to do?");
-		System.out.println(" view , edit all accounts or quit");
+		System.out.println("view, edit accounts or quit");
 		Scanner scan = new Scanner(System.in);
 		String choice = scan.nextLine();
 		switch (choice) {
-		case "edit":
+				
+		case "edit": System.out.println("Enter Customer Name");
+			String name = scan.nextLine();
+			AccountManagment.editCustAcc(name);
 			break;
 		case "view":
 			System.out.println("Enter Customer Name");
-			String name = scan.nextLine();
-			AccountManagment.viewCustAccAd(name);
+			String name1 = scan.nextLine();
+			AccountManagment.viewCustAccAd(name1);
 			break;
 		case "quit":
 			startMenu();
@@ -169,5 +174,12 @@ public class Menu {
 		default:
 			System.out.println("Whatup!");
 		}
+	}
+	
+	public static void menu5() {
+		System.out.println("What would you like to do, edit account, create account or delete account");
+		System.out.println("Type edit, create or delete");
+		Scanner scan = new Scanner(System.in);
+		String editChoice = scan.nextLine();
 	}
 }
