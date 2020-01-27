@@ -6,11 +6,11 @@ public static Employee curEmployee;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Customer firstCustomer = new Customer("jason", "password");
-		Customer secondCustomer = new Customer("john", "password");
-		Customer.custList.add(firstCustomer);
-		Customer.custList.add(secondCustomer);
-		IOMethods.writeCustomerFile();
+//		Customer firstCustomer = new Customer("jason", "password");
+//		Customer secondCustomer = new Customer("john", "password");
+//		Customer.custList.add(firstCustomer);
+//		Customer.custList.add(secondCustomer);
+//		IOMethods.writeCustomerFile();
 		
 		
 //		Employee firstEmployee = new Employee("Janet", "password");

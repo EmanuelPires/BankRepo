@@ -25,20 +25,21 @@ public class AccountManagment {
 		int cont = 0;
 		while (Customer.custList.size() >= cont && (Customer.custList.get(cont).getName().equals(name) != true
 				|| Customer.custList.get(cont).getPassword().equals(password) != true)) {
-
+			System.out.println("Customer"+ Customer.custList.get(cont));
 			cont++;
 
 		}
 
-		if (cont == Customer.custList.size() && Customer.custList.get(cont).getName() != name
-				|| Customer.custList.get(cont).getPassword() != password) {
+		System.out.println("Customer out of loop" + Customer.custList.get(cont));
+		if (cont == Customer.custList.size() && (Customer.custList.get(cont).getName().equals(name) == false
+				|| Customer.custList.get(cont).getPassword().equals(password) == false)) {
 			System.out.println("Your username or password are incorrect");
 		} else {
-			// System.out.println(cont);
+			 System.out.println(cont);
 			custIndex = cont;
 			Driver.curCustomer = Customer.custList.get(cont);
-			// System.out.println("From AcctMgmt curCustomer = " +
-			// Driver.curCustomer.toString());
+			 System.out.println("From AcctMgmt curCustomer = " +
+			 Driver.curCustomer.toString());
 		}
 
 	}
