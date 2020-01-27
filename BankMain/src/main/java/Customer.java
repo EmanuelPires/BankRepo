@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Customer implements Serializable{
 
-	
+	public static final long serialVersionUID = -470081244094378942L;
 	public static ArrayList<Customer> custList = new ArrayList<Customer>();
 	public static ArrayList<Customer>pendingList = new ArrayList<Customer>();
 	private String name;

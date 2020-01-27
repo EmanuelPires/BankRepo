@@ -3,21 +3,16 @@ import java.util.ArrayList;
 
 public class Employee extends Customer implements Serializable{
 	
-	String name;
-	String password;
 	
+	public static final long serialVersionUID = -470081244094378942L;
 	public static ArrayList<Employee> empList = new ArrayList<Employee>();
 	
 	public Employee(String name, String password) {
-		this.name = name;
-		this.password = password;
+		super(name, password);
 		
 	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Employee [name=" + name + ", password=" +password + "]";
-	}
 	
-
+	
+	
+	
 }

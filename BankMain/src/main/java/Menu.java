@@ -42,6 +42,14 @@ public class Menu {
 			AccountManagment.empLogin(empName, empPassword);
 			menu3();
 			break;
+		case"admin":
+			System.out.println("Enter your name");
+			String adName=scan.nextLine();
+			System.out.println("Enter your password");
+			String adpassword=scan.nextLine();
+			AccountManagment.adlogin(adName, adpassword);
+			menu4();
+			break;
 		case "quit":
 			startMenu();
 			break;
@@ -60,7 +68,7 @@ public class Menu {
 		// System.out.println("Address: " + Driver.curCustomer.getAddress());
 		// System.out.println("Phone Number: " + Driver.curCustomer.getPhoneNumber());
 
-		System.out.println(Driver.curCustomer.getAccountEnabled());
+		
 		if (!Driver.curCustomer.getAccountEnabled()) {
 			System.out.println("You want to apply for a account or quit");
 
@@ -142,5 +150,24 @@ public class Menu {
 	}
 
 	
-
+	public static void menu4() {
+		System.out.println("What would you like to do?");
+		System.out.println(" view , edit all accounts or quit");
+		Scanner scan = new Scanner(System.in);
+		String choice = scan.nextLine();
+		switch (choice) {
+		case "edit":
+			break;
+		case "view":
+			System.out.println("Enter Customer Name");
+			String name = scan.nextLine();
+			AccountManagment.viewCustAccAd(name);
+			break;
+		case "quit":
+			startMenu();
+			break;
+		default:
+			System.out.println("Whatup!");
+		}
+	}
 }

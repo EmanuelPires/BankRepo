@@ -15,6 +15,7 @@ public class IOMethods {
 	private static final File PendingFile=new File("pendingReguest.txt");
 	
 	private static final File EMPLOYEEFILE = new File("employeeList.txt");
+	private static final File ADMINFILE=new File("adminList.txt");
 
 	public static void writeCustomerFile() {
 		ObjectOutputStream objectOut;
@@ -144,6 +145,39 @@ public class IOMethods {
 		
 	}
 		
-		
+	
+	
+	public static void writeAdminList() {
+		ObjectOutputStream obj;
+			try {
+				obj = new ObjectOutputStream(new FileOutputStream(ADMINFILE));
+				obj.writeObject(Admin.adList);
+				obj.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	public static void readAdminfile() {
+		ObjectInputStream objectIn;
+		try {
+			objectIn = new ObjectInputStream(new FileInputStream(ADMINFILE));
+			Admin.adList= (ArrayList<Admin>)objectIn.readObject();
+			//System.out.println(objectIn.readObject());
+			objectIn.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	}
 
