@@ -1,3 +1,4 @@
+package com.bank.main;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +17,11 @@ public class IOMethods {
 	
 	private static final File EMPLOYEEFILE = new File("employeeList.txt");
 	private static final File ADMINFILE=new File("adminList.txt");
+	private static final File ACCOUNTFILE = new File("accountFile.txt");
+	
+	
+	//CUSTOMER SECTION
+	//-----------------------------------------------------------------
 
 	public static void writeCustomerFile() {
 		ObjectOutputStream objectOut;
@@ -53,6 +59,11 @@ public class IOMethods {
 		}
 		
 	}
+	
+	
+	//Employee section
+	//---------------------------------------------------------------------------
+	//
 	
 	public static void readEmployeefile() {
 		ObjectInputStream objectIn;
@@ -145,6 +156,8 @@ public class IOMethods {
 		
 	}
 		
+	//----------------------------------------------------------------
+	//ADMIN LIST
 	
 	
 	public static void writeAdminList() {
@@ -177,6 +190,31 @@ public class IOMethods {
 		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	
+	//ACCOUNTS SECTION
+	//------------------------------------------------------------------
+	
+	public static void writeAccountFile() {
+		ObjectOutputStream objectOut;
+		
+		
+			try {
+				objectOut = new ObjectOutputStream(new FileOutputStream(ACCOUNTFILE));
+				objectOut.writeObject(Account.accountList);
+				objectOut.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	
 	}
 	
 	}

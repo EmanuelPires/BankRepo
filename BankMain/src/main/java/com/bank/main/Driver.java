@@ -1,3 +1,6 @@
+package com.bank.main;
+import com.bank.connection.ConnectionMethods;
+import com.bank.connection.ConnectionUtil;
 
 public class Driver {
 
@@ -23,12 +26,21 @@ public static Admin curAdmin;
 //	Admin firstAdmin = new Admin("Jack", "password");
 //	Admin.adList.add(firstAdmin);
 //	IOMethods.writeAdminList();
-		 
-		IOMethods.readEmployeefile();
-		IOMethods.readAdminfile();
-		IOMethods.readCustFile();
 		
-		//System.out.println(Customer.custList.get(0));
+	
+		//Account firstAccount = new Account();
+		//Account.accountList.add(firstAccount);
+		//IOMethods.writeAccountFile();
+		 
+		//IOMethods.readEmployeefile();
+		//IOMethods.readAdminfile();
+		//IOMethods.readCustFile();
+		
+		ConnectionMethods.getCustomers();
+		
+	
+		//System.out.println(Customer.custList.get(2).toString());
+		//ConnectionMethods.insertCustomer(3, "John", "password", 0, 0);
 		Menu menu = new Menu();
 		menu.startMenu();
 		//menu.menu2();

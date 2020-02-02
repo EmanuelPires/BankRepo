@@ -1,6 +1,9 @@
+package com.bank.main;
 import java.util.Scanner;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
+
+import com.bank.connection.ConnectionMethods;
 
 public class Menu {
 
@@ -40,6 +43,8 @@ public class Menu {
 
 			String empPassword = scan.nextLine();
 			AccountManagment.empLogin(empName, empPassword);
+			
+			
 			menu3();
 			break;
 		case"admin":
@@ -62,20 +67,18 @@ public class Menu {
 	
 	public static void menu2() {
 		System.out.println("You are logged in!");
-		// System.out.println("Your account information is listed below");
-		// System.out.println("Name: " + Driver.curCustomer.getName());
-		// System.out.println("Email: " + Driver.curCustomer.getEmail());
-		// System.out.println("Address: " + Driver.curCustomer.getAddress());
-		// System.out.println("Phone Number: " + Driver.curCustomer.getPhoneNumber());
+		
 
 		
-		if (!Driver.curCustomer.getAccountEnabled()) {
+		if (Driver.curCustomer.getAccountEnabled()==0) {
 			System.out.println("You want to apply for a account or quit");
 
 			Scanner scan = new Scanner(System.in);
 			String option2 = scan.nextLine();
 			switch (option2) {
 			case "apply":
+				int apply = 1;
+				int approved = 0;
 				System.out.println("Enter your email");
 				String email = scan.nextLine();
 				System.out.println("Enter your address");
@@ -86,9 +89,10 @@ public class Menu {
 				Driver.curCustomer.setAddress(address);
 				Driver.curCustomer.setPhoneNumber(phone);
 				System.out.println("Your application as been receieved you must wait for your application to be approve");
-				AccountManagment.updateAccount();
-				IOMethods.writePendinFile();
-				IOMethods.writeCustomerFile();
+//				AccountManagment.updateAccount();
+//				IOMethods.writePendinFile();
+//				IOMethods.writeCustomerFile();
+				ConnectionMethods.applyForAccount(email, address, phone, apply, approved, Driver.curCustomer.getIdNum());
 				startMenu();
 				break;
 			case "quit":
@@ -107,24 +111,27 @@ public class Menu {
 			case "deposit":
 				System.out.println("Enter the amount ");
 				Double amount = scan.nextDouble();
-				AccountManagment.deposit(amount);
+				//AccountManagment.deposit(amount);
 				Menu.menu2();
 				break;
 			case "withdraw":
 				System.out.println("Enter the amount ");
 				Double amount1 = scan.nextDouble();
-				AccountManagment.withdraw(amount1);
+				//AccountManagment.withdraw(amount1);
 				Menu.menu2();
 				break;
 			case "view balance":
-				AccountManagment.viewCustBalance();
+				//AccountManagment.viewCustBalance();
 				Menu.menu2();
 				break;
 			case "quit":
 				Menu.startMenu();
+				break;
 			default:
 				System.out.println("Hey type correctly");
+				Menu.menu2();
 				break;
+				
 			}
 		}
 	}
@@ -136,6 +143,8 @@ public class Menu {
 		String choice = scan.nextLine();
 		switch (choice) {
 		case "approve":
+			
+			ConnectionMethods.approveAccounts();
 			AccountManagment.appoveAccounts();
 			break;
 		case "view":
